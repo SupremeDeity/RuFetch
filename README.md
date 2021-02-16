@@ -1,2 +1,57 @@
 # RuFetch
 A simple, customisable fetch written in Rust.
+
+## Sample
+```
+user@user-pc
+------------------------------
+OS: Arch Linux
+Host: user-pc
+Uptime: 24.37 min(s)
+Kernel Version: 5.10.15-arch1-1
+Memory: 2.45 GB / 8.05 GB
+Swap: 1.02 GB / 8.39 GB
+```
+
+## Configuration
+This is the default configuration:
+```toml
+show_os = true
+show_hostname = true
+show_kernel_version = true
+show_memory = true
+show_swap = true
+uptime_type = "Hour"
+memory_type = "GB"
+```
+
+### **Configuration locations**
+The configuration file (`config.toml`) needs to be manually created. These are platform-specific paths:
+
+**Windows**: `%appdata%/ru_fetch/config.toml`
+
+**Linux**: `~/.config/ru_fetch/config.toml`
+
+**Windows**: `~/Library/Application Support/ru_fetch/config.toml`
+
+### **Available Options**
+**show_os**: Whether to show OS or not. 
+**Possible Values: true, false.**
+
+**show_hostname**: Whether to show Host name or not. 
+**Possible Values: true, false.**
+
+**show_kernel_version**: Whether to show the kernel version or not. 
+**Possible Values: true, false.**
+
+**show_memory**: Whether to show total/used memory or not. 
+**Possible Values: true, false.**
+
+**show_swap**: Whether to show total/used swap or not. 
+**Possible Values: true, false.**
+
+**uptime_type**: Unit to show uptime in. 
+**Possible Values: Hour, Minute, Second.**
+
+**memory_type**: Unit to show memory in.
+**Possible Values: KB, MB, GB.**
