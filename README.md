@@ -21,6 +21,8 @@ show_hostname = true
 show_kernel_version = true
 show_memory = true
 show_swap = true
+show_colors = true
+colors_width = 3
 uptime_type = "Hour"
 memory_type = "GB"
 ```
@@ -49,6 +51,12 @@ The configuration file (`config.toml`) needs to be manually created. These are p
 
 **show_swap**: Whether to show total/used swap or not. 
 **Possible Values: true, false.**
+
+**show_colors**: Whether to show color blocks or not. 
+**Possible Values: true, false.**
+
+**colors_width**: Width of each indiviual color block. 
+**Possible Values: Unsigned integer (within integer range)**
 
 **uptime_type**: Unit to show uptime in. 
 **Possible Values: Hour, Minute, Second.**

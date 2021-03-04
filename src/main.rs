@@ -34,8 +34,13 @@ impl MemType {
     }
 }
 
+// Need a better way for these two
 fn default_bool() -> bool {
     true
+}
+
+fn default_usize() -> usize {
+    3
 }
 
 #[derive(Deserialize)]
@@ -58,6 +63,12 @@ struct Config {
     #[serde(default = "default_bool")]
     show_swap: bool,
 
+    #[serde(default = "default_bool")]
+    show_colors: bool,
+
+    #[serde(default = "default_usize")]
+    colors_width: usize,
+
     #[serde(default = "Time::default")]
     uptime_type: Time,
 
@@ -66,9 +77,11 @@ struct Config {
 }
 
 fn main() {
+    // Get the system info
     let sys = System::new_all();
-    //let enabled = ansi_term::enable_ansi_support();
+    //let enabled = ansi_term::enable_ansi_support(); // for some reason this isnt available.
 
+    // Getting the user
     let mut user_out = if cfg!(target_os = "windows") || cfg!(target_os = "linux") {
         // linux, windows
         Command::new("whoami").output().expect("none")
@@ -91,11 +104,11 @@ fn main() {
         show_kernel_version = true
         show_memory = true
         show_swap = true
+        show_colors = true
+        colors_width = 3
         uptime_type = "Minute"
         memory_type = "GB"
     "#;
-
-    // TODO: add support for windows.
     let config_path = std::format!(
         "{}/ru_fetch/config.toml",
         dirs::config_dir().unwrap().as_path().to_str().unwrap()
@@ -237,5 +250,35 @@ fn main() {
                 )
             }
         }
+    }
+
+    if config.show_colors {
+        println!(
+            "{}{}{}{}",
+            Red.on(Red)
+                .paint(format!("{:width$}", width = config.colors_width)),
+            Green
+                .on(Green)
+                .paint(format!("{:width$}", width = config.colors_width)),
+            Blue.on(Blue)
+                .paint(format!("{:width$}", width = config.colors_width)),
+            Yellow
+                .on(Yellow)
+                .paint(format!("{:width$}", width = config.colors_width))
+        );
+        println!(
+            "{}{}{}{}",
+            Black
+                .on(Black)
+                .paint(format!("{:width$}", width = config.colors_width)),
+            White
+                .on(White)
+                .paint(format!("{:width$}", width = config.colors_width)),
+            Purple
+                .on(Purple)
+                .paint(format!("{:width$}", width = config.colors_width)),
+            Cyan.on(Cyan)
+                .paint(format!("{:width$}", width = config.colors_width))
+        )
     }
 }
