@@ -1,4 +1,7 @@
 # RuFetch
+![Github Actions](https://github.com/supremedeity/rufetch/actions/workflows/rust.yml/badge.svg)
+[![CircleCI](https://circleci.com/gh/SupremeDeity/RuFetch.svg?style=svg)](https://circleci.com/gh/SupremeDeity/RuFetch)
+
 A simple, customisable fetch written in Rust.
 
 ## Sample
