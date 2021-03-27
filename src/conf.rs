@@ -1,10 +1,10 @@
+use crate::types::{Config, MemType, Time};
 use ansi_term::{self, Color::*};
 pub use serde::Deserialize;
+
 use std::{fs::File, path::Path, str};
 use std::{io::Read, process::Command};
-use sysinfo::{ProcessorExt, System, SystemExt};
-
-use crate::types::{Config, MemType, Time};
+use sysinfo::{DiskExt, ProcessorExt, System, SystemExt};
 
 impl Time {
     pub fn default() -> Self {
@@ -34,6 +34,8 @@ impl Config {
         show_swap = true
         show_colors = true
         show_cpu = true
+        show_cores = true
+        show_disks = true
         colors_width = 3
         uptime_type = "Minute"
         memory_type = "GB"
@@ -114,8 +116,12 @@ impl Config {
             Config::print_kernel_ver(&sys);
         }
 
+        if self.show_disks {
+            Config::print_disks(&sys);
+        }
+
         if self.show_cpu {
-            Config::print_cpu(&sys);
+            Config::print_cpu(&self, &sys);
         }
 
         if self.show_memory {
@@ -173,12 +179,32 @@ impl Config {
         }
     }
 
-    fn print_cpu(sys: &System) {
-        println!(
+    fn print_cpu(&self, sys: &System) {
+        let cpu_str = format!(
             "{} {}",
             Blue.bold().paint("CPU:"),
             sys.get_global_processor_info().get_brand()
         );
+
+        if *&self.show_cores {
+            println!("{} ({})", cpu_str, sys.get_processors().len());
+        } else {
+            println!("{}", cpu_str);
+        }
+    }
+
+    fn print_disks(sys: &System) {
+        const ONE_GB: u64 = (1024 as u64).pow(3);
+
+        for disk in sys.get_disks() {
+            println!(
+                "{}: {} ({:.2} GB / {:.2} GB)",
+                Blue.bold().paint("Disk"),
+                Yellow.bold().paint(disk.get_name().to_string_lossy()),
+                (disk.get_total_space() - disk.get_available_space()) as f64 / ONE_GB as f64,
+                disk.get_total_space() as f64 / ONE_GB as f64
+            )
+        }
     }
 
     fn print_mem(&self, sys: &System) {
@@ -209,6 +235,7 @@ impl Config {
     }
 
     fn print_swap(&self, sys: &System) {
+        sys.get_global_processor_info().get_brand();
         match &self.memory_type {
             MemType::KB => println!(
                 "{} {:.2} KB / {:.2} KB",
