@@ -1,7 +1,7 @@
 # RuFetch
 ![Github Actions](https://github.com/supremedeity/rufetch/actions/workflows/rust.yml/badge.svg)
-[![CircleCI Main Branch](https://circleci.com/gh/SupremeDeity/RuFetch/tree/main.svg?style=svg)](https://circleci.com/gh/SupremeDeity/RuFetch/tree/main)
-[![CircleCI Dev Branch](https://circleci.com/gh/SupremeDeity/RuFetch/tree/dev.svg?style=svg)](https://circleci.com/gh/SupremeDeity/RuFetch/tree/dev)
+[![CircleCI Main Branch](https://img.shields.io/circleci/build/gh/SupremeDeity/RuFetch/main?label=main)](https://circleci.com/gh/SupremeDeity/RuFetch/tree/main)
+[![CircleCI Dev Branch](https://img.shields.io/circleci/build/gh/SupremeDeity/RuFetch/dev?label=dev)](https://circleci.com/gh/SupremeDeity/RuFetch/tree/dev)
 [![Crate Version](https://img.shields.io/crates/v/ru_fetch?color=green&label=Crate%20version)](https:/crates.io/crates/ru_fetch)
 
 A simple, customisable fetch written in Rust.
