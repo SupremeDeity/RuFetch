@@ -40,6 +40,12 @@ pub struct Config {
     #[serde(default = "Config::default_bool")]
     pub show_cpu: bool,
 
+    #[serde(default = "Config::default_bool")]
+    pub show_cores: bool,
+
+    #[serde(default = "Config::default_bool")]
+    pub show_disks: bool,
+
     #[serde(default = "Config::default_usize")]
     pub colors_width: usize,
 
