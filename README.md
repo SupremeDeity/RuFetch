@@ -14,7 +14,8 @@ OS: Arch Linux
 Host: user-pc
 Uptime: 24.37 min(s)
 Kernel Version: 5.10.15-arch1-1
-CPU: Intel(R) Core(TM) i5-3320M CPU @ 2.60GHz
+CPU: Intel(R) Core(TM) i5-3320M CPU @ 2.60GHz (4)
+Disk: /dev/sda2 (96.61 GB / 449.57 GB)
 Memory: 2.45 GB / 8.05 GB
 Swap: 1.02 GB / 8.39 GB
 ```
@@ -63,6 +64,15 @@ The configuration file (`config.toml`) needs to be manually created. These are t
 **Possible Values: `true, false`.**
 
 **`show_colors`**: Whether to show color blocks or not. 
+**Possible Values: `true, false`.**
+
+**`show_cpu`**: Whether to show cpu name or not. 
+**Possible Values: `true, false`.**
+
+**`show_cores`**: Whether to show (logical + physical) cores with cpu name or not. 
+**Possible Values: `true, false`.**
+
+**`show_disks`**: Whether to show disks or not. 
 **Possible Values: `true, false`.**
 
 **`colors_width`**: Width of each indiviual color block. 

@@ -194,15 +194,14 @@ impl Config {
     }
 
     fn print_disks(sys: &System) {
-        const ONE_GB: u64 = (1024 as u64).pow(3);
-
         for disk in sys.get_disks() {
             println!(
                 "{}: {} ({:.2} GB / {:.2} GB)",
                 Blue.bold().paint("Disk"),
                 Yellow.bold().paint(disk.get_name().to_string_lossy()),
-                (disk.get_total_space() - disk.get_available_space()) as f64 / ONE_GB as f64,
-                disk.get_total_space() as f64 / ONE_GB as f64
+                (disk.get_total_space() - disk.get_available_space()) as f64
+                    / (1024.0 * 1024.0 * 1024.0),
+                disk.get_total_space() as f64 / (1024 * 1024 * 1024) as f64
             )
         }
     }
