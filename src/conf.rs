@@ -4,77 +4,26 @@ use std::{fs::File, path::Path, str};
 use std::{io::Read, process::Command};
 use sysinfo::{ProcessorExt, System, SystemExt};
 
-#[derive(Deserialize)]
-pub enum Time {
-    Second,
-    Minute,
-    Hour,
-}
+use crate::types::{Config, MemType, Time};
 
 impl Time {
-    fn default() -> Self {
+    pub fn default() -> Self {
         Time::Hour
     }
 }
 
-#[derive(Deserialize)]
-pub enum MemType {
-    KB,
-    MB,
-    GB,
-}
-
 impl MemType {
-    fn default() -> Self {
+    pub fn default() -> Self {
         MemType::GB
     }
 }
 
-fn default_bool() -> bool {
-    true
-}
-
-fn default_usize() -> usize {
-    3
-}
-
-#[derive(Deserialize)]
-pub struct Config {
-    #[serde(default = "default_bool")]
-    pub show_os: bool,
-
-    #[serde(default = "default_bool")]
-    pub show_hostname: bool,
-
-    #[serde(default = "default_bool")]
-    pub show_uptime: bool,
-
-    #[serde(default = "default_bool")]
-    pub show_kernel_version: bool,
-
-    #[serde(default = "default_bool")]
-    pub show_memory: bool,
-
-    #[serde(default = "default_bool")]
-    pub show_swap: bool,
-
-    #[serde(default = "default_bool")]
-    pub show_colors: bool,
-
-    #[serde(default = "default_bool")]
-    pub show_cpu: bool,
-
-    #[serde(default = "default_usize")]
-    pub colors_width: usize,
-
-    #[serde(default = "Time::default")]
-    pub uptime_type: Time,
-
-    #[serde(default = "MemType::default")]
-    pub memory_type: MemType,
-}
-
 impl Config {
+    /// Fetches config and returns a new [Config] instance.
+    ///
+    /// # Panic
+    /// This code should not panic under normal circumstances.
+
     pub fn new() -> Config {
         let default_config = r#"
         show_os = true
@@ -96,7 +45,7 @@ impl Config {
         );
 
         let config: Config = if cfg!(target_os = "linux") && Path::new(&config_path).exists() {
-            let f = File::open(&config_path);
+            let f = File::open(&config_path); // no unwrap() since other errors can occur too.
             match f {
                 Ok(mut file) => {
                     let mut contents = String::new();
@@ -131,7 +80,11 @@ impl Config {
         config
     }
 
-    pub fn print_config(&self, sys: &System) {
+    /// Prints the fetch results to the console.
+    ///
+    /// The result depends on the config file or the fallback defaults.
+
+    pub fn print(&self, sys: &System) {
         if self.show_hostname {
             let host_name = sys.get_host_name();
             // Getting the user
@@ -150,7 +103,7 @@ impl Config {
         }
 
         if self.show_os {
-            Config::print_os(&sys);
+            Config::print_os(&self, &sys);
         }
 
         if self.show_uptime {
@@ -184,8 +137,9 @@ impl Config {
         }
     }
 
-    fn print_os(sys: &System) {
+    fn print_os(&self, sys: &System) {
         let os = sys.get_name();
+
         if let Some(os) = &os {
             println!("{} {}", Blue.bold().paint("OS:"), os);
         }
@@ -310,10 +264,11 @@ impl Config {
                 .paint(format!("{:width$}", width = &self.colors_width))
         );
     }
+
     fn get_user() -> String {
         let mut user_out = if cfg!(target_os = "windows") || cfg!(target_os = "linux") {
             // linux, windows
-            Command::new("whoami").output().expect("none")
+            Command::new("whoami").output().unwrap()
         } else {
             // darwin(mac)
             Command::new("id -un").output().expect("none")
@@ -325,5 +280,15 @@ impl Config {
             str::from_utf8(&user_out.stdout).unwrap().to_string()
         };
         user
+    }
+
+    /// Returns the default value for bool fields of [Config]
+    pub fn default_bool() -> bool {
+        true
+    }
+
+    /// Returns the default value for usize fields of [Config]
+    pub fn default_usize() -> usize {
+        3
     }
 }
