@@ -1,13 +1,15 @@
 # RuFetch
+A simple, customisable fetch written in Rust.
+
 ![Github Actions](https://github.com/supremedeity/rufetch/actions/workflows/rust.yml/badge.svg)
 [![CircleCI Main Branch](https://img.shields.io/circleci/build/gh/SupremeDeity/RuFetch/main?label=main)](https://circleci.com/gh/SupremeDeity/RuFetch/tree/main)
 [![CircleCI Dev Branch](https://img.shields.io/circleci/build/gh/SupremeDeity/RuFetch/dev?label=dev)](https://circleci.com/gh/SupremeDeity/RuFetch/tree/dev)
 [![Crate Version](https://img.shields.io/crates/v/ru_fetch?color=green&label=Crate%20version)](https:/crates.io/crates/ru_fetch)
 
-A simple, customisable fetch written in Rust.
-
+  
 ## Sample
-```
+
+```bash
 user@user-pc
 ------------------------------
 OS: Arch Linux
@@ -19,67 +21,35 @@ Disk: /dev/sda2 (96.61 GB / 449.57 GB)
 Memory: 2.45 GB / 8.05 GB
 Swap: 1.02 GB / 8.39 GB
 ```
+## Configuration Location
 
-## Configuration
-This is the default configuration:
-```toml
-show_os = true
-show_hostname = true
-show_uptime = true
-show_kernel_version = true
-show_memory = true
-show_swap = true
-show_colors = true
-show_cpu = true
-show_cores = true
-show_disks = true
-colors_width = 3
-uptime_type = "Minute"
-memory_type = "GB"
-```
+| Platform      | Location                                              |
+| :------------ | :---------------------------------------------------- |
+| **Windows**   | %appdata%/ru_fetch/config.toml                        |
+| **Linux**     | ~/.config/ru_fetch/config.toml                        |
+| **Mac**       | ~/Library/Application Support/ru_fetch/config.toml    |
 
-### **Configuration locations**
-The configuration file (`config.toml`) needs to be manually created. These are the platform-specific paths:
+## Configuration Options
+Following are possible configuration options, their descriptions and their possible values.
 
-**Windows**: `%appdata%/ru_fetch/config.toml`
+| Option                    | Description               | Possible Values           |
+| :-----------------------  | :------------------------ | :------------------------ |
+| **show_os**               | Show OS                   | `true, false`             |
+| **show_hostname**         | Show hostname             | `true, false`             |
+| **show_kernel_version**   | Show OS kernel version    | `true, false`             |
+| **show_memory**           | Show total and used RAM   | `true, false`             |
+| **show_swap**             | Show total and used Swap  | `true, false`             |
+| **show_uptime**           | Show system uptime        | `true, false`             |
+| **show_colors**           | Show color blocks         | `true, false`             |
+| **show_cpu**              | Show CPU usage            | `true, false`             |
+| **show_cores**            | Show total CPU cores      | `true, false`             |            
+| **show_disks**            | Show Disk name and Usage  | `true, false`             | 
+| **uptime_type**           | The uptime's unit         | `Hour, Minute, Second`    |
+| **colors_width**          | Size of color blocks      | `any unsigned int`        |
+| **memory_type**           | The memory's unit         | `KB, MB, GB`              |
 
-**Linux**: `~/.config/ru_fetch/config.toml`
+**Note:** colors_width requires a unsigned integer which is within integer range. Recommended usage is 3 - 5
 
-**Windows**: `~/Library/Application Support/ru_fetch/config.toml`
+## License
 
-### **Available Options**
-**`show_os`**: Whether to show OS or not. 
-**Possible Values: `true, false`.**
-
-**`show_hostname`**: Whether to show Host name or not. 
-**Possible Values: `true, false`.**
-
-**`show_kernel_version`**: Whether to show the kernel version or not. 
-**Possible Values: `true, false`.**
-
-**`show_memory`**: Whether to show total/used memory or not. 
-**Possible Values: `true, false`.**
-
-**`show_swap`**: Whether to show total/used swap or not. 
-**Possible Values: `true, false`.**
-
-**`show_colors`**: Whether to show color blocks or not. 
-**Possible Values: `true, false`.**
-
-**`show_cpu`**: Whether to show cpu name or not. 
-**Possible Values: `true, false`.**
-
-**`show_cores`**: Whether to show (logical + physical) cores with cpu name or not. 
-**Possible Values: `true, false`.**
-
-**`show_disks`**: Whether to show disks or not. 
-**Possible Values: `true, false`.**
-
-**`colors_width`**: Width of each indiviual color block. 
-**Possible Values: `Unsigned integer (within integer range)`**
-
-**`uptime_type`**: Unit to show uptime in. 
-**Possible Values: `Hour, Minute, Second`.**
-
-**`memory_type`**: Unit to show memory in.
-**Possible Values: `KB, MB, GB`.**
+This program is licensed under [GPL3](https://choosealicense.com/licenses/gpl-3.0/)
