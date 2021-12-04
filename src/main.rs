@@ -1,6 +1,6 @@
 use sysinfo::{System, SystemExt};
 
-// TODO: Add Gpu, Shell, Terminal, Disk Usage
+// TODO: Add Gpu, Shell, Terminal, Resolution
 mod conf;
 mod types;
 use types::Config;

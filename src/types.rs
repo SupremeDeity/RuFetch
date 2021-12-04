@@ -32,6 +32,9 @@ pub struct Config {
     pub show_memory: bool,
 
     #[serde(default = "Config::default_bool")]
+    pub show_de: bool,
+
+    #[serde(default = "Config::default_bool")]
     pub show_swap: bool,
 
     #[serde(default = "Config::default_bool")]
@@ -45,6 +48,9 @@ pub struct Config {
 
     #[serde(default = "Config::default_bool")]
     pub show_disks: bool,
+
+    #[serde(default = "Config::default_bool")]
+    pub show_temperature: bool,
 
     #[serde(default = "Config::default_usize")]
     pub colors_width: usize,

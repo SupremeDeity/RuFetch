@@ -2,9 +2,10 @@ use crate::types::{Config, MemType, Time};
 use ansi_term::{self, Color::*};
 pub use serde::Deserialize;
 
+use std::iter::repeat;
 use std::{fs::File, path::Path, str};
 use std::{io::Read, process::Command};
-use sysinfo::{DiskExt, ProcessorExt, System, SystemExt};
+use sysinfo::{ComponentExt, DiskExt, ProcessorExt, System, SystemExt};
 
 impl Time {
     pub fn default() -> Self {
@@ -32,6 +33,7 @@ impl Config {
         show_kernel_version = true
         show_memory = true
         show_swap = true
+        show_de = true
         show_colors = true
         show_cpu = true
         show_cores = true
@@ -108,6 +110,10 @@ impl Config {
             Config::print_os(&self, &sys);
         }
 
+        if self.show_de {
+            Config::print_desktop_environment();
+        }
+
         if self.show_uptime {
             Config::print_uptime(&self, &sys);
         }
@@ -130,6 +136,10 @@ impl Config {
 
         if self.show_swap {
             Config::print_swap(&self, &sys);
+        }
+
+        if self.show_temperature {
+            Config::print_temps(&sys);
         }
 
         if self.show_colors {
@@ -291,6 +301,24 @@ impl Config {
         );
     }
 
+    fn print_temps(sys: &System) {
+        println!();
+        println!("{}", Red.bold().paint("Temperature"));
+        println!(
+            "{}",
+            Red.bold().paint(repeat('-').take(20).collect::<String>())
+        );
+
+        for component in sys.get_components() {
+            println!(
+                "{}: {}°C",
+                Blue.bold().paint(component.get_label()),
+                component.get_temperature()
+            );
+        }
+        println!();
+    }
+
     fn get_user() -> String {
         let mut user_out = if cfg!(target_os = "windows") || cfg!(target_os = "linux") {
             // linux, windows
@@ -306,6 +334,26 @@ impl Config {
             str::from_utf8(&user_out.stdout).unwrap().to_string()
         };
         user
+    }
+
+    /// --------------- Linux only --------------------
+    ///
+    /// Gets the current desktop enviroment. The information might not be 100% accurate.
+    /// Skips if nothing useful is found.
+    fn print_desktop_environment() {
+        if cfg!(target_os = "linux") {
+            // linux
+            match option_env!("DESKTOP_SESSION") {
+                Some(val) => {
+                    let de_str = format!("{} {}", Blue.bold().paint("DE:"), val);
+
+                    println!("{}", de_str);
+                }
+                None => {}
+            }
+        } else {
+            {}
+        };
     }
 
     /// Returns the default value for bool fields of [Config]
