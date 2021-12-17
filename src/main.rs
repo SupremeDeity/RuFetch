@@ -2,6 +2,7 @@ use sysinfo::{System, SystemExt};
 
 // TODO: Add Gpu, Shell, Terminal, Resolution
 mod conf;
+mod fetch;
 mod types;
 use types::Config;
 
@@ -13,7 +14,7 @@ fn main() {
     #[cfg(windows)]
     let enabled = ansi_term::enable_ansi_support();
 
-    let config = Config::new();
+    let conf = Config::new();
 
-    config.print(&sys);
+    fetch::print(&conf, &sys);
 }
