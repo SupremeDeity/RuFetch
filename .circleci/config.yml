@@ -3,8 +3,8 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: cimg/rust:1.45.0
+      - image: cimg/rust:1.63.0
     steps:
       - checkout
       - run: cargo --version
-      - run: cargo build --release
+      - run: cargo build --release --verbose
