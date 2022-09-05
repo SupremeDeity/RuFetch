@@ -1,10 +1,10 @@
 [package]
-name = "ru_fetch"
+name = "rufetch"
 description = "Simple Fetch written in Rust."
 repository = "https://github.com/SupremeDeity/RuFetch"
 license = "GPL-3.0"
 version = "0.2.4"
-authors = ["mohsin"]
+authors = ["SupremeDeity08"]
 keywords = ["fetch", "info", "system", "linux", "windows"]
 categories = ["command-line-utilities"]
 readme = "README.md"

@@ -11,7 +11,7 @@ fn main() {
 
     // Enable color support for WIN10
     #[cfg(windows)]
-    let enabled = ansi_term::enable_ansi_support();
+    let _enabled = ansi_term::enable_ansi_support();
 
     let config = Config::new();
 

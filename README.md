@@ -1,10 +1,12 @@
 # RuFetch
 A simple, customisable fetch written in Rust.
 
-![Github Actions](https://github.com/supremedeity/rufetch/actions/workflows/rust.yml/badge.svg)
-[![CircleCI Main Branch](https://img.shields.io/circleci/build/gh/SupremeDeity/RuFetch/main?label=main)](https://circleci.com/gh/SupremeDeity/RuFetch/tree/main)
-[![CircleCI Dev Branch](https://img.shields.io/circleci/build/gh/SupremeDeity/RuFetch/dev?label=dev)](https://circleci.com/gh/SupremeDeity/RuFetch/tree/dev)
-[![Crate Version](https://img.shields.io/crates/v/ru_fetch?color=green&label=Crate%20version)](https:/crates.io/crates/ru_fetch)
+**NOTE:** THIS IS THE CONTINUED VERSION OF [ru_fetch](https://github.com/supremedeity/rufetch/).
+
+![Github Actions](https://github.com/supremedeity08/rufetch/actions/workflows/rust.yml/badge.svg)
+[![CircleCI Main Branch](https://img.shields.io/circleci/build/gh/SupremeDeity08/RuFetch/main?label=main)](https://circleci.com/gh/SupremeDeity08/RuFetch/tree/main)
+[![CircleCI Dev Branch](https://img.shields.io/circleci/build/gh/SupremeDeity08/RuFetch/dev?label=dev)](https://circleci.com/gh/SupremeDeity08/RuFetch/tree/dev)
+[![Crate Version](https://img.shields.io/crates/v/rufetch?color=green&label=Crate%20version)](https:/crates.io/crates/rufetch)
 
   
 ## Sample
@@ -23,32 +25,35 @@ Swap: 1.02 GB / 8.39 GB
 ```
 ## Configuration Location
 
-| Platform      | Location                                              |
-| :------------ | :---------------------------------------------------- |
-| **Windows**   | %appdata%/ru_fetch/config.toml                        |
-| **Linux**     | ~/.config/ru_fetch/config.toml                        |
-| **Mac**       | ~/Library/Application Support/ru_fetch/config.toml    |
+| Platform    | Location                                          |
+| :---------- | :------------------------------------------------ |
+| **Windows** | %appdata%/rufetch/config.toml                     |
+| **Linux**   | ~/.config/rufetch/config.toml                     |
+| **Mac**     | ~/Library/Application Support/rufetch/config.toml |
 
 ## Configuration Options
 Following are possible configuration options, their descriptions and their possible values.
 
-| Option                    | Description               | Possible Values           |
-| :-----------------------  | :------------------------ | :------------------------ |
-| **show_os**               | Show OS                   | `true, false`             |
-| **show_hostname**         | Show hostname             | `true, false`             |
-| **show_kernel_version**   | Show OS kernel version    | `true, false`             |
-| **show_memory**           | Show total and used RAM   | `true, false`             |
-| **show_swap**             | Show total and used Swap  | `true, false`             |
-| **show_uptime**           | Show system uptime        | `true, false`             |
-| **show_colors**           | Show color blocks         | `true, false`             |
-| **show_cpu**              | Show CPU usage            | `true, false`             |
-| **show_cores**            | Show total CPU cores      | `true, false`             |            
-| **show_disks**            | Show Disk name and Usage  | `true, false`             | 
-| **uptime_type**           | The uptime's unit         | `Hour, Minute, Second`    |
-| **colors_width**          | Size of color blocks      | `any unsigned int`        |
-| **memory_type**           | The memory's unit         | `KB, MB, GB`              |
+| Option                  | Description              | Possible Values        | Default |
+| :---------------------- | :----------------------- | :--------------------- | :------ |
+| **show_os**             | Show OS                  | `true, false`          | `true`  |
+| **show_hostname**       | Show hostname            | `true, false`          | `true`  |
+| **show_kernel_version** | Show OS kernel version   | `true, false`          | `true`  |
+| **show_memory**         | Show total and used RAM  | `true, false`          | `true`  |
+| **show_swap**           | Show total and used Swap | `true, false`          | `true`  |
+| **show_uptime**         | Show system uptime       | `true, false`          | `true`  |
+| **show_colors**         | Show color blocks        | `true, false`          | `true`  |
+| **show_cpu**            | Show CPU usage           | `true, false`          | `true`  |
+| **show_cores**          | Show total CPU cores     | `true, false`          | `true`  |
+| **show_temperature**    | Show temperature**       | `true, false`          | `false` |
+| **show_disks**          | Show Disk name and Usage | `true, false`          | `true`  |
+| **uptime_type**         | The uptime's unit        | `Hour, Minute, Second` | `Hour`  |
+| **colors_width**        | Size of color blocks**   | `any unsigned int`     | `3`     |
+| **memory_type**         | The memory's unit        | `KB, MB, GB`           | `GB`    |
 
 **Note:** colors_width requires a unsigned integer which is within integer range. Recommended usage is 3 - 5
+
+**Note:** show_temperature currently may not work on all platforms and as such is `false` by default
 
 ## License
 

@@ -7,18 +7,6 @@ use std::{fs::File, path::Path, str};
 use std::{io::Read, process::Command};
 use sysinfo::{ComponentExt, DiskExt, ProcessorExt, System, SystemExt};
 
-impl Time {
-    pub fn default() -> Self {
-        Time::Hour
-    }
-}
-
-impl MemType {
-    pub fn default() -> Self {
-        MemType::GB
-    }
-}
-
 impl Config {
     /// Fetches config and returns a new [Config] instance.
     ///
@@ -26,6 +14,8 @@ impl Config {
     /// This code should not panic under normal circumstances.
 
     pub fn new() -> Config {
+        // Default configs.
+        // These are completely ignored in case a config file is found.
         let default_config = r#"
         show_os = true
         show_hostname = true
@@ -38,6 +28,7 @@ impl Config {
         show_cpu = true
         show_cores = true
         show_disks = true
+        show_temperature = false
         colors_width = 3
         uptime_type = "Minute"
         memory_type = "GB"
@@ -48,7 +39,7 @@ impl Config {
             dirs::config_dir().unwrap().as_path().to_str().unwrap()
         );
 
-        let config: Config = if cfg!(target_os = "linux") && Path::new(&config_path).exists() {
+        let config: Config = if Path::new(&config_path).exists() {
             let f = File::open(&config_path); // no unwrap() since other errors can occur too.
             match f {
                 Ok(mut file) => {
@@ -354,15 +345,5 @@ impl Config {
         } else {
             {}
         };
-    }
-
-    /// Returns the default value for bool fields of [Config]
-    pub fn default_bool() -> bool {
-        true
-    }
-
-    /// Returns the default value for usize fields of [Config]
-    pub fn default_usize() -> usize {
-        3
     }
 }
