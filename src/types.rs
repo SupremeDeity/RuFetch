@@ -24,7 +24,7 @@ pub fn bool_false_override() -> bool {
 
 /// Returns the default value for usize fields of [Config]
 pub fn default_usize() -> usize {
-    3
+    2
 }
 
 #[derive(Deserialize)]
@@ -78,6 +78,9 @@ pub struct Config {
 
     #[serde(default = "bool_false_override")]
     pub show_temperature: bool,
+
+    #[serde(default = "default_usize")]
+    pub colors_height: usize,
 
     #[serde(default = "default_usize")]
     pub colors_width: usize,

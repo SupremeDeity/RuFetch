@@ -48,7 +48,8 @@ Following are possible configuration options, their descriptions and their possi
 | **show_temperature**    | Show temperature**       | `true, false`          | `false` |
 | **show_disks**          | Show Disk name and Usage | `true, false`          | `true`  |
 | **uptime_type**         | The uptime's unit        | `Hour, Minute, Second` | `Hour`  |
-| **colors_width**        | Size of color blocks**   | `any unsigned int`     | `3`     |
+| **colors_height**       | Height of color blocks** | `any unsigned int`     | `2`     |
+| **colors_width**        | Width of color blocks**  | `any unsigned int`     | `2`     |
 | **memory_type**         | The memory's unit        | `KB, MB, GB`           | `GB`    |
 
 **Note:** colors_width requires a unsigned integer which is within integer range. Recommended usage is 3 - 5
