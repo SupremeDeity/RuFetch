@@ -1,11 +1,9 @@
 # RuFetch
-A simple, customisable fetch written in Rust.
+A simple, customisable fetch written in Rust. 
 
-**NOTE:** THIS IS THE CONTINUED VERSION OF [ru_fetch](https://github.com/supremedeity/rufetch/).
-
-![Github Actions](https://github.com/supremedeity08/rufetch/actions/workflows/rust.yml/badge.svg)
-[![CircleCI Main Branch](https://img.shields.io/circleci/build/gh/SupremeDeity08/RuFetch/main?label=main)](https://circleci.com/gh/SupremeDeity08/RuFetch/tree/main)
-[![CircleCI Dev Branch](https://img.shields.io/circleci/build/gh/SupremeDeity08/RuFetch/dev?label=dev)](https://circleci.com/gh/SupremeDeity08/RuFetch/tree/dev)
+![Github Actions](https://github.com/supremedeity/rufetch/actions/workflows/rust.yml/badge.svg)
+[![CircleCI Main Branch](https://img.shields.io/circleci/build/gh/SupremeDeity/RuFetch/main?label=main)](https://circleci.com/gh/SupremeDeity/RuFetch/tree/main)
+[![CircleCI Dev Branch](https://img.shields.io/circleci/build/gh/SupremeDeity/RuFetch/dev?label=dev)](https://circleci.com/gh/SupremeDeity/RuFetch/tree/dev)
 [![Crate Version](https://img.shields.io/crates/v/rufetch?color=green&label=Crate%20version)](https:/crates.io/crates/rufetch)
 
   
