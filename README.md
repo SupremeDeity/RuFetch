@@ -68,6 +68,30 @@ Following are possible configuration options, their descriptions and their possi
 
 **Note:** colors_width requires a unsigned integer which is within integer range. Recommended usage is 3 - 5
 
+### Sample / Default Config
+<details>
+  <summary>Sample Config</summary>
+  
+```toml
+show_os = true
+show_hostname = true
+show_uptime = true
+show_kernel_version = true
+show_memory = true
+show_swap = true
+show_de = true
+show_temperature = true
+show_colors = true
+show_cpu = true
+show_cores = true
+show_disks = true
+colors_width = 3
+uptime_type = "Minute"
+memory_type = "GB"
+```
+  
+</details>
+
 ## License
 
 This program is licensed under [GPL3](https://choosealicense.com/licenses/gpl-3.0/).
