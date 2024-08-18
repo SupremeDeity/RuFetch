@@ -2,7 +2,6 @@ use std::{fs::File, io::Read, path::Path};
 
 use crate::types::{Config, MemType, Time};
 use ansi_term::{self, Color::*};
-pub use serde::Deserialize;
 
 impl Time {
     pub fn default() -> Self {

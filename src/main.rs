@@ -1,4 +1,6 @@
-use sysinfo::{System, SystemExt};
+use std::process::{exit, ExitCode};
+
+use sysinfo::System;
 
 // TODO: Add Gpu, Shell, Terminal, Resolution
 mod conf;
@@ -6,9 +8,13 @@ mod fetch;
 mod types;
 use types::Config;
 
-fn main() {
+fn main() -> ExitCode {
+    if !sysinfo::IS_SUPPORTED_SYSTEM {
+        println!("This OS isn't supported (yet?).");
+        return ExitCode::FAILURE;
+    }
     // Get the system info
-    let sys = System::new_all();
+    let mut sys = System::new_all();
 
     // Enable color support for WIN10
     #[cfg(windows)]
@@ -16,5 +22,7 @@ fn main() {
 
     let conf = Config::new();
 
-    fetch::print(&conf, &sys);
+    fetch::print(&conf, &mut sys);
+
+    return ExitCode::SUCCESS;
 }

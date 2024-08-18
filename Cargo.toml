@@ -3,19 +3,20 @@ name = "ru_fetch"
 description = "Simple Fetch written in Rust."
 repository = "https://github.com/SupremeDeity/RuFetch"
 license = "GPL-3.0"
-version = "0.2.4"
-authors = ["mohsin"]
+version = "0.2.5"
+authors = ["SupremeDeity"]
 keywords = ["fetch", "info", "system", "linux", "windows"]
 categories = ["command-line-utilities"]
 readme = "README.md"
-edition = "2018"
+edition = "2021"
 
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-sysinfo = "0.18.2"
+sysinfo = "0.31.2"
 ansi_term = "0.12.1"
-serde = { version = "1.0.126", features = ["derive"] }
-toml = "0.5.8"
-dirs = "3.0.2"
+serde = { version = "1.0.208", features = ["derive"] }
+toml = "0.8.19"
+dirs = "5.0.1"
+whoami = "1.5.1"
